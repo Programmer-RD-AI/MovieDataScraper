@@ -1,4 +1,4 @@
 from moviedata import *
 
-mds = MovieDataScraper()
-mds.movies_basic_details()
+m = IMDBMoviesBasicDetailsScraper()
+m.movies_basic_details()
