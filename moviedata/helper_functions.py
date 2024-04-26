@@ -25,9 +25,10 @@ class Save:
     def __init__(self, data: Dict, name: str) -> None:
         self.data = pd.DataFrame(data)
         self.name = name
-        self.file_path = f'../../data/{self.name}/{self.name}'
-        if name not in os.listdir('../../data/'):
-            os.mkdir(f'../../data/{name}')
+        print(PATH)
+        self.file_path = f'{PATH}/data/{self.name}/{self.name}'
+        if name not in os.listdir(f'{PATH}/data/'):
+            os.mkdir(f'{PATH}/data/{name}')
 
     def save_csv(self) -> bool:
         self.data.to_csv(
@@ -35,8 +36,7 @@ class Save:
         return True
 
     def save_json(self) -> bool:
-        self.data.to_json(self.file_path + '.json'
-                          )
+        self.data.to_json(self.file_path + '.json')
         return True
 
 
@@ -63,7 +63,7 @@ def wait_for_threads(threads: List[threading.Thread]) -> bool:
     return True
 
 
-def save(self, data: Dict, name: str):
+def save(data: Dict, name: str):
     s = Save(data, name)
     s.save_csv()
     s.save_json()
