@@ -1,6 +1,6 @@
 from moviedata import *
-from moviedata.scraper.imdb.imdb_scraper import *
 from moviedata.scraper.imdb.imdb_movie_details_scraper import *
+from moviedata.scraper.imdb.imdb_scraper import *
 
 
 class IMDBMoviesBasicDetailsScraper(IMDBScraper):
@@ -16,7 +16,7 @@ class IMDBMoviesBasicDetailsScraper(IMDBScraper):
             "movieYear": [],
             "movieTime": [],
             "movieAvgRating": [],
-            "movieRatingCount": []
+            "movieRatingCount": [],
         }
 
     def movies_basic_details(self):
@@ -35,22 +35,43 @@ class IMDBMoviesBasicDetailsScraper(IMDBScraper):
                 "span", class_="sc-b189961a-8 kLaxqf cli-title-metadata-item"
             )
             movie_year = movie_timestamp[0].text if movie_timestamp else None
-            movie_time = movie_timestamp[1].text if len(
-                movie_timestamp) > 1 else None
+            movie_time = movie_timestamp[1].text if len(movie_timestamp) > 1 else None
             movie_avg_rating_element = movie.find(
                 "span",
                 class_="ipc-rating-star ipc-rating-star--base ipc-rating-star--imdb ratingGroup--imdb-rating",
             )
-            movie_avg_rating = movie_avg_rating_element.contents[1].strip(
-            ) if movie_avg_rating_element else None
+            movie_avg_rating = (
+                movie_avg_rating_element.contents[1].strip()
+                if movie_avg_rating_element
+                else None
+            )
             movie_rating_count_element = movie.find(
-                "span", class_="ipc-rating-star--voteCount")
-            movie_rating_count = movie_rating_count_element.text.strip().replace(
-                "(", "").replace(")", "") if movie_rating_count_element else None
-            self.movies_basic_details_dict = add_to_dict(self.movies_basic_details_dict, [encode(
-                movie_title), movie_img, movie_more_url, movie_title, movie_year, movie_time, movie_avg_rating, movie_rating_count])
-            movie_thread = threading.Thread(target=self.imdb_movie_details.movie_further_details, args=(
-                encode(movie_title), movie_more_url))
+                "span", class_="ipc-rating-star--voteCount"
+            )
+            movie_rating_count = (
+                movie_rating_count_element.text.strip()
+                .replace("(", "")
+                .replace(")", "")
+                if movie_rating_count_element
+                else None
+            )
+            self.movies_basic_details_dict = add_to_dict(
+                self.movies_basic_details_dict,
+                [
+                    encode(movie_title),
+                    movie_img,
+                    movie_more_url,
+                    movie_title,
+                    movie_year,
+                    movie_time,
+                    movie_avg_rating,
+                    movie_rating_count,
+                ],
+            )
+            movie_thread = threading.Thread(
+                target=self.imdb_movie_details.movie_further_details,
+                args=(encode(movie_title), movie_more_url),
+            )
             movie_threads.append(movie_thread)
             movie_thread.start()
             # break
