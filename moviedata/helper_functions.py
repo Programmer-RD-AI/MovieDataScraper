@@ -1,5 +1,6 @@
-from moviedata import *
 import base64
+
+from moviedata import *
 
 
 def encode(message: str) -> bytes:

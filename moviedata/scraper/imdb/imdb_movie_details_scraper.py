@@ -1,11 +1,11 @@
 from moviedata import *
-from moviedata.scraper.imdb.imdb_scraper import *
+from moviedata.scraper.imdb.imdb_cast_scraper import *
 from moviedata.scraper.imdb.imdb_faq_scraper import *
 from moviedata.scraper.imdb.imdb_photos_scraper import *
+from moviedata.scraper.imdb.imdb_scraper import *
 from moviedata.scraper.imdb.imdb_similar_movies_scraper import *
 from moviedata.scraper.imdb.imdb_technical_specs_scraper import *
 from moviedata.scraper.imdb.imdb_video_scraper import *
-from moviedata.scraper.imdb.imdb_cast_scraper import *
 
 
 class IMDBMovieDetailsScraper(IMDBScraper):
