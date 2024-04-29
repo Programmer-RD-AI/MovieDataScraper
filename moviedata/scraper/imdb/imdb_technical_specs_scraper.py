@@ -30,14 +30,17 @@ class IMDBTechnicalSpecsScraper(IMDBScraper):
             spec_value = technical_specification.find(
                 "div", class_="ipc-metadata-list-item__content-container"
             )
-            spec_value, spec_link = spec_value.text if spec_value else None, (
+            spec_value, spec_link = (
+                spec_value.text if spec_value else None,
                 (
-                    spec_value.find("a").attrs["href"]
-                    if spec_value.find_all("a") != []
+                    (
+                        spec_value.find("a").attrs["href"]
+                        if spec_value.find_all("a") != []
+                        else None
+                    )
+                    if spec_value
                     else None
-                )
-                if spec_value
-                else None
+                ),
             )
             self.technical_specification_data["movieID"].append(movie_id)
             self.technical_specification_data["specKey"].append(spec_key)
