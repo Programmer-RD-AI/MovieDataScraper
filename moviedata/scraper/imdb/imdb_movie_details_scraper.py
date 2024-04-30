@@ -46,9 +46,11 @@ class IMDBMovieDetailsScraper(IMDBScraper):
         if not page_res[0]:
             return self.movie_details
         movie_page = page_res[1]
-        movie_description = movie_page.find("span", class_="sc-a31b0662-2 geLkLc").text
+        with open("test.html", "w") as f:
+            f.write(str(movie_page))
+        movie_description = movie_page.find("span", class_="sc-7193fc79-2 kpMXpM").text
         movie_scores = movie_page.find_all(
-            "li", class_="ipc-inline-list__item sc-9e83797f-1 cxyOpW"
+            "li", class_="ipc-inline-list__item"
         )
         reviews = get_reviews_details(movie_scores)
         user_reviews, critic_reviews, metascore = (

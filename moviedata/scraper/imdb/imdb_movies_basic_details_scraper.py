@@ -4,7 +4,9 @@ from moviedata.scraper.imdb.imdb_movie_details_scraper import *
 
 
 class IMDBMoviesBasicDetailsScraper(IMDBScraper):
-    def __init__(self, specific_url: str = "/chart/moviemeter/?ref_=nv_mv_mpm"):
+    def __init__(
+        self, specific_url: str = "/chart/moviemeter/?ref_=nv_mv_mpm"
+    ):  # "/chart/top/?ref_=nv_mv_250"
         super().__init__()
         self.page = get_page(self.BASE_URL + specific_url, self.cookies)[-1]
         self.imdb_movie_details = IMDBMovieDetailsScraper()

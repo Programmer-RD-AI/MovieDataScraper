@@ -10,6 +10,13 @@ import requests
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 import urllib3
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import random
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from wordcloud import WordCloud
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 load_dotenv()
@@ -22,4 +29,4 @@ http.mount("http://", adapter)
 
 from moviedata.helper_functions import *
 from moviedata.scraper import *
-from moviedata.analysis import *
+from moviedata.analytics import *
