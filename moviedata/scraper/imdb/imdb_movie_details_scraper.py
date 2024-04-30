@@ -1,11 +1,11 @@
 from moviedata import *
-from moviedata.scraper.imdb.imdb_scraper import *
+from moviedata.scraper.imdb.imdb_cast_scraper import *
 from moviedata.scraper.imdb.imdb_faq_scraper import *
 from moviedata.scraper.imdb.imdb_photos_scraper import *
+from moviedata.scraper.imdb.imdb_scraper import *
 from moviedata.scraper.imdb.imdb_similar_movies_scraper import *
 from moviedata.scraper.imdb.imdb_technical_specs_scraper import *
 from moviedata.scraper.imdb.imdb_video_scraper import *
-from moviedata.scraper.imdb.imdb_cast_scraper import *
 
 
 class IMDBMovieDetailsScraper(IMDBScraper):
@@ -49,9 +49,7 @@ class IMDBMovieDetailsScraper(IMDBScraper):
         with open("test.html", "w") as f:
             f.write(str(movie_page))
         movie_description = movie_page.find("span", class_="sc-7193fc79-2 kpMXpM").text
-        movie_scores = movie_page.find_all(
-            "li", class_="ipc-inline-list__item"
-        )
+        movie_scores = movie_page.find_all("li", class_="ipc-inline-list__item")
         reviews = get_reviews_details(movie_scores)
         user_reviews, critic_reviews, metascore = (
             reviews if len(reviews) == 3 else [None] * 3
