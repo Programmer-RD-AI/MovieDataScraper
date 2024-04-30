@@ -92,7 +92,8 @@ class Analytics:
         word_tokens = []
         for sentence in sentences:
             words = word_tokenize(sentence.lower())  # Convert to lowercase
-            words = [word for word in words if word.isalnum()]  # Remove punctuation
+            # Remove punctuation
+            words = [word for word in words if word.isalnum()]
             words = [word for word in words if word not in self.stop_words]
             word_tokens.extend(words)
         text = " ".join(word_tokens)

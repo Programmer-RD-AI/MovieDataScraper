@@ -1,22 +1,27 @@
-from tqdm import tqdm
-import pandas as pd
 import os
-from dotenv import load_dotenv
-from pprint import pprint
-import threading
-from typing import *
-from bs4 import *
-import requests
-from requests.adapters import HTTPAdapter
-from requests.packages.urllib3.util.retry import Retry
-import urllib3
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 import random
+import threading
+from pprint import pprint
+from typing import *
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import requests
+import seaborn as sns
+import urllib3
+from bs4 import *
+from dotenv import load_dotenv
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
+from tqdm import tqdm
 from wordcloud import WordCloud
+
+from moviedata.analytics import *
+from moviedata.helper_functions import *
+from moviedata.scraper import *
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 load_dotenv()
@@ -26,7 +31,3 @@ adapter = HTTPAdapter(max_retries=retry_strategy)
 http = requests.Session()
 http.mount("https://", adapter)
 http.mount("http://", adapter)
-
-from moviedata.helper_functions import *
-from moviedata.scraper import *
-from moviedata.analytics import *

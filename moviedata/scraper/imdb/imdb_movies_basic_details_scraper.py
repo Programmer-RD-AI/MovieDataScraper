@@ -1,6 +1,6 @@
 from moviedata import *
-from moviedata.scraper.imdb.imdb_scraper import *
 from moviedata.scraper.imdb.imdb_movie_details_scraper import *
+from moviedata.scraper.imdb.imdb_scraper import *
 
 
 class IMDBMoviesBasicDetailsScraper(IMDBScraper):
